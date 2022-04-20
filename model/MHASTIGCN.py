@@ -238,56 +238,6 @@ class cheb_conv_withSAt(nn.Module):
         return self.relu(torch.cat(outputs, dim=-1))  # (b, N, F_out, T)
 
 
-class cheb_conv(nn.Module):
-    '''
-    K-order chebyshev graph convolution
-    '''
-
-    def __init__(self, K, cheb_polynomials, in_channels, out_channels):
-        '''
-        :param K: int
-        :param in_channles: int, num of channels in the input sequence
-        :param out_channels: int, num of channels in the output sequence
-        '''
-        super(cheb_conv, self).__init__()
-        self.K = K
-        self.cheb_polynomials = cheb_polynomials
-        self.in_channels = in_channels
-        self.out_channels = out_channels
-        self.DEVICE = cheb_polynomials[0].device
-        self.Theta = nn.ParameterList([nn.Parameter(torch.FloatTensor(in_channels, out_channels).to(self.DEVICE)) for _ in range(K)])
-
-    def forward(self, x):
-        '''
-        Chebyshev graph convolution operation
-        :param x: (batch_size, N, F_in, T)
-        :return: (batch_size, N, F_out, T)
-        '''
-
-        batch_size, num_of_vertices, in_channels, num_of_timesteps = x.shape
-
-        outputs = []
-
-        for time_step in range(num_of_timesteps):
-
-            graph_signal = x[:, :, :, time_step]  # (b, N, F_in)
-
-            output = torch.zeros(batch_size, num_of_vertices, self.out_channels).to(self.DEVICE)  # (b, N, F_out)
-
-            for k in range(self.K):
-
-                T_k = self.cheb_polynomials[k]  # (N,N)
-
-                theta_k = self.Theta[k]  # (in_channel, out_channel)
-
-                rhs = graph_signal.permute(0, 2, 1).matmul(T_k).permute(0, 2, 1)
-
-                output = output + rhs.matmul(theta_k)
-
-            outputs.append(output.unsqueeze(-1))
-
-        return F.relu(torch.cat(outputs, dim=-1))
-
 class Embedding(nn.Module):
     def __init__(self, nb_seq, d_Em, num_of_features, Etype):
         super(Embedding, self).__init__()
@@ -358,7 +308,6 @@ class MHASTIGCN_block(nn.Module):
         self.QKt = MultiHeadAttention(DEVICE, 2 * d_model, d_k, d_v, K)
 
         self.cheb_conv_SAt = cheb_conv_withSAt(K, cheb_polynomials, in_channels, nb_chev_filter, num_of_vertices)
-        self.cheb_conv = cheb_conv(K, cheb_polynomials, in_channels, nb_chev_filter)
 
         self.gtu3 = GTU(nb_time_filter, time_strides, 3, 1)
         self.gtu5 = GTU(nb_time_filter, time_strides, 3, 2)
