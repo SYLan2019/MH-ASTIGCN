@@ -231,7 +231,7 @@ def predict_main(global_step, data_loader, data_target_tensor, _mean, _std, type
 if __name__ == "__main__":
 
     # train_main()
-    predict_main(26, test_loader, test_target_tensor, _mean, _std, 'test')
+    predict_main(36, test_loader, test_target_tensor, _mean, _std, 'test')
 
 
 
