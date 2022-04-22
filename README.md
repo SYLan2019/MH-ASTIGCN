@@ -39,12 +39,12 @@ The shape of input traffic data should be "(Total_Time_Steps, Node_Number). For 
 The calculation uses CPU, which should be prepared for enough computation resources.
 
 
-# Train and Test
+# Test
 
 - on PEMS04 dataset  
   
   ```shell   
-  python train.py --config configurations/PEMS04.conf   
+  python test.py --config configurations/PEMS04.conf   
   ```
 
 - visualize training progress:
