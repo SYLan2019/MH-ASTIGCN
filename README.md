@@ -47,11 +47,11 @@ The calculation uses CPU, which should be prepared for enough computation resour
   python test.py --config configurations/PEMS04.conf   
   ```
 
-- visualize training progress:
+<!-- - visualize training progress:
   ```
   tensorboard --logdir logs --port 6006
   ```
-  then open [http://127.0.0.1:6006](http://127.0.0.1:6006) to visualize the training process.
+  then open [http://127.0.0.1:6006](http://127.0.0.1:6006) to visualize the training process. -->
 
 
 # Configuration
