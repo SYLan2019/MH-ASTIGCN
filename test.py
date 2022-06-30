@@ -11,7 +11,7 @@ from time import time
 import shutil
 import argparse
 import configparser
-from model.MHASTIGCN import make_model
+from model.MHASTIGCN_v2 import make_model
 from lib.dataloader import load_weighted_adjacency_matrix,load_weighted_adjacency_matrix2,load_PA
 from lib.utils import load_graphdata_channel1, get_adjacency_matrix2, compute_val_loss_mstgcn, predict_and_save_results_mstgcn
 from tensorboardX import SummaryWriter
@@ -231,7 +231,7 @@ def predict_main(global_step, data_loader, data_target_tensor, _mean, _std, type
 if __name__ == "__main__":
 
     # train_main()
-    predict_main(36, test_loader, test_target_tensor, _mean, _std, 'test')
+    predict_main(37, test_loader, test_target_tensor, _mean, _std, 'test')
 
 
 
