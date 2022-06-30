@@ -1,8 +1,8 @@
 # MH-ASTIGCN
 
-
-
 Modeling of Spatial-Temporal Dynamic Dependency in Traffic Flow Data to Predict its Evolution
+
+Multi-Head self-Attention based Spatial-Temporal Information Graph Convolutional Networks (MH-ASTIGCN)
 
 
 
