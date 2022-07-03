@@ -1,4 +1,5 @@
 # MH-ASTIGCN
+Note: The latest version is in the latest branch
 
 Multi-Head Self-Attention Based Spatial-Temporal Information Graph Convolutional Networks for Traffic Flow Forecasting
 
