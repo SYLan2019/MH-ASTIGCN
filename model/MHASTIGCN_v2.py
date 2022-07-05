@@ -356,7 +356,7 @@ class MHASTIGCN_block(nn.Module):
 
         self.cheb_conv_SAt = cheb_conv_withSAt(K, cheb_polynomials, in_channels, nb_chev_filter, num_of_vertices)
 
-        self.T2At = T2MultiHeadAttention(DEVICE, nb_chev_filter, d_k, d_v, n_heads, num_of_vertices)
+        self.T2At = T2MultiHeadAttention(DEVICE, nb_chev_filter, d_k, d_v, n_gdc, num_of_vertices)
 
         self.convs = nn.ModuleList([])
         for i in range(n_gdc):
