@@ -1,0 +1,2 @@
+2023-06 Revised for Transactions on Knowledge and Data Engineering.
+Here, bak codes and network parameters for this version at https://github.com/SYLan2019/MH-ASTIGCN/tree/Changed-2023-06.
